@@ -42,23 +42,33 @@ const VideoCategorySection = (videos) => {
     
     div.innerHTML = `
     
-    
-    <div class="card bg-base-100 shadow-sm">
-                <figure class="relative">
-                    <img
+               <div class="card bg-base-100 shadow-sm ">
+                <figure class="relative ">
+                    <img class="w-full h-48 object-cover"
                     src="${video.thumbnail}"
-                    alt="${video.title}" />
-                    <span class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">${video.others.posted_date}</span>
+                    alt="" />
+                    <span class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">3hrs 56 min ago
+                        
+                    </span>
                 </figure>
-                <div class="card-body">
-                    <h2 class="card-title">${video.title}</h2>
-                    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                    <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
-                    </div>
+                <div class="flex  gap-5 px-0 py-5">
+                           <div class="profile">
+                                <div class="avatar">
+                                    <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
+                                        <img src="${video.authors[0].profile_picture}" />
+                                    </div>
+                                </div>
+                            </div>
+                           
+                           
+                            <div>
+                                <h2 class="text-sm font-bold">${video.title}</h2>
+                           
+                                <p class="flex text-sm text-gray-600 ">Awlad Hossain <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png"></p>
+                                <p>91K views</p>
+                            </div> 
                 </div>
             </div>
-    
     
     
     `
