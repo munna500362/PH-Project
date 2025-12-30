@@ -34,7 +34,7 @@ function loadData(categories){
 
 const VideoCategorySection = (videos) => {
     const videoContainer = document.getElementById("video-container");
-    // console.log(videos);
+    console.log(videos);
    videos.forEach(video => {
     const div = document.createElement("div");
 // 
@@ -64,7 +64,7 @@ const VideoCategorySection = (videos) => {
                             <div>
                                 <h2 class="text-sm font-bold">${video.title}</h2>
                            
-                                <p class="flex text-sm text-gray-600 ">Awlad Hossain <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png"></p>
+                                <p class="flex text-sm text-gray-600 ">${video.authors[0].profile_name} <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png"></p>
                                 <p>91K views</p>
                             </div> 
                 </div>
@@ -79,7 +79,7 @@ const VideoCategorySection = (videos) => {
 
 catagory();
 
-videofetchSection();
+// videofetchSection();
 
 
 // authors
