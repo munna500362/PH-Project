@@ -1,13 +1,12 @@
-// console.log("Hello, World!");
-
 function removeActiveClass(){
-    const categoryButtons = document.getElementById("active");
+    const categoryButtons = document.getElementsByClassName("active");
     for(const button of categoryButtons){
         button.classList.remove("active");
     }
 }
 
-function catagory (){
+
+function catagoryButton (){
     fetch ("https://openapi.programming-hero.com/api/phero-tube/categories")
     .then(res => res.json())
     .then((data) => loadData(data.categories))
@@ -16,42 +15,35 @@ function catagory (){
 const videofetchSection = () => {
     fetch ('https://openapi.programming-hero.com/api/phero-tube/videos')
     .then ((res) => res.json())
-    .then ((data) => VideoCategorySection(data.videos))
+    .then ((data) => {
+        removeActiveClass();
+        const AllData = document.getElementById("All-btn");
+        AllData.classList.add("active");
+        VideoCategorySection(data.videos);
 
+    })
 }
-// category
-// : 
-// "Music"
-// category_id
-// : 
-// "1001"
 
 function videofetchSectionByCategory (id){
-    // console.log(id);
     const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
-    // console.log(url);
     fetch (url)
     .then ((res) => res.json())
     .then ((data) => {
         removeActiveClass()
         const CategoryID = document.getElementById(`btn-${id}`);
         CategoryID.classList.add("active");
-        // console.log(CategoryID);
+        console.log(CategoryID);
         VideoCategorySection(data.category);
     })
 }
 
-
-
 function loadData(categories){
-    
     for(const cat of categories){
-// console.log(cat);
         const categoriContainer = document.getElementById("categori-container");
         const div = document.createElement("div")
-        div.innerHTML = `
-                <button id="btn-${cat.category_id}" onclick="videofetchSectionByCategory('${cat.category_id}')" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
-
+        div.innerHTML = 
+        `
+                <button id="btn-${cat.category_id}" onclick="videofetchSectionByCategory(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
         `
         categoriContainer.appendChild(div);
 }}
@@ -61,23 +53,20 @@ const VideoCategorySection = (videos) => {
     const videoContainer = document.getElementById("video-container");
     videoContainer.innerHTML = "";
     if(videos.length === 0){
-        videoContainer.innerHTML = `
-         <div class="col-span-full flex flex-col justify-center items-center text-center">              
-                    <img class="w-[120px] py-5" src="image/Icon.png" alt="">
-                    <h1 class="font-extrabold">Oops!! Sorry, There is no content here</h1>
+        videoContainer.innerHTML =
+        `
+            <div class="col-span-full flex flex-col justify-center items-center text-center">              
+                <img class="w-[120px] py-5" src="image/Icon.png" alt="">
+                <h1 class="font-extrabold">Oops!! Sorry, There is no content here</h1>
              
             </div>
-
-        `;
+        `
         return;
 
     }
     console.log(videos);
    videos.forEach(video => {
     const div = document.createElement("div");
-// 
-
-    
     div.innerHTML = `
     
                <div class="card bg-base-100 shadow-sm ">
@@ -115,7 +104,7 @@ const VideoCategorySection = (videos) => {
    });
 }
 
-catagory();
+catagoryButton();
 
 // videofetchSection();
 
