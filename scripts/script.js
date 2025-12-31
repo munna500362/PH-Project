@@ -56,8 +56,8 @@ const VideoCategorySection = (videos) => {
         videoContainer.innerHTML =
         `
             <div class="col-span-full flex flex-col justify-center items-center text-center">              
-                <img class="w-[120px] py-5" src="image/Icon.png" alt="">
-                <h1 class="font-extrabold">Oops!! Sorry, There is no content here</h1>
+                <img class="w-[120px] py-3 lg:py-5" src="image/Icon.png" alt="">
+                <h1 class="font-bold lg:font-extrabold">Oops!! Sorry, There is no content here</h1>
              
             </div>
         `
@@ -71,14 +71,14 @@ const VideoCategorySection = (videos) => {
     
                <div class="card bg-base-100 shadow-sm ">
                 <figure class="relative ">
-                    <img class="w-full h-48 object-cover"
+                    <img class="w-full h-auto md:h-48 object-cover"
                     src="${video.thumbnail}"
                     alt="" />
                     <span class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">3hrs 56 min ago
                         
                     </span>
                 </figure>
-                <div class="flex  gap-5 px-0 py-5">
+                <div class="flex  gap-3 lg:gap-5 px-0 py-3  lg:py-5">
                            <div class="profile">
                                 <div class="avatar">
                                     <div class="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
@@ -94,7 +94,10 @@ const VideoCategorySection = (videos) => {
                                 <p class="flex text-sm text-gray-600 ">${video.authors[0].profile_name} <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png"></p>
                                 <p>91K views</p>
                             </div> 
+
                 </div>
+                                 
+                            <button class="btn btn-block">block</button>
             </div>
     
     
@@ -105,31 +108,3 @@ const VideoCategorySection = (videos) => {
 }
 
 catagoryButton();
-
-// videofetchSection();
-
-
-// authors
-// : 
-// [{…}]
-// category_id
-// : 
-// "1001"
-// description
-// : 
-// "Dive into the rhythm of 'Shape of You,' a captivating track that blends pop sensibilities with vibrant beats. Created by Olivia Mitchell, this song has already gained 100K views since its release. With its infectious melody and heartfelt lyrics, 'Shape of You' is perfect for fans looking for an uplifting musical experience. Let the music take over as Olivia's vocal prowess and unique style create a memorable listening journey."
-// others
-// : 
-// {views: '100K', posted_date: '16278'}
-// thumbnail
-// : 
-// "https://i.ibb.co/L1b6xSq/shape.jpg"
-// title
-// : 
-// "Shape of You"
-// video_id
-// : 
-// "aaaa"
-// [[Prototype]]
-// : 
-// Object
