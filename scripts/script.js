@@ -5,6 +5,42 @@ function removeActiveClass(){
     }
 }
 
+function VideoDetails(video_id){
+   const url = 
+   `
+   https://openapi.programming-hero.com/api/phero-tube/video/${video_id}
+   `
+   fetch (url)
+   .then ((res) => res.json())
+   .then ((data) => VideoButtonDetails(data.video))
+};
+
+function VideoButtonDetails(video){
+    console.log(video);
+      document.getElementById("VideoDetails_Container").showModal();
+      const videoDetailsModel = document.getElementById("videoDetailsModel");
+      videoDetailsModel.innerHTML = 
+      `
+        <div class="card bg-base-100 image-full w-full shadow-sm">
+  <figure>
+    <img
+      src="${video.thumbnail}"
+      alt="videoThumnail" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${video.title}</h2>
+    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+    <div class="card-actions justify-end">
+    </div>
+  </div>
+</div>
+      `
+    // videoContainerDetails.innerHTML = 
+    // `
+    // <h1> ${video.title}</h1>
+    // `
+    
+}
 
 function catagoryButton (){
     fetch ("https://openapi.programming-hero.com/api/phero-tube/categories")
@@ -24,6 +60,8 @@ const videofetchSection = () => {
     })
 }
 
+
+
 function videofetchSectionByCategory (id){
     const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
     fetch (url)
@@ -42,8 +80,9 @@ function loadData(categories){
         const categoriContainer = document.getElementById("categori-container");
         const div = document.createElement("div")
         div.innerHTML = 
+
         `
-                <button id="btn-${cat.category_id}" onclick="videofetchSectionByCategory(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
+         <button id="btn-${cat.category_id}" onclick="videofetchSectionByCategory(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
         `
         categoriContainer.appendChild(div);
 }}
@@ -91,13 +130,19 @@ const VideoCategorySection = (videos) => {
                             <div>
                                 <h2 class="text-sm font-bold">${video.title}</h2>
                            
-                                <p class="flex text-sm text-gray-600 ">${video.authors[0].profile_name} <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png"></p>
+                                <p class="flex text-sm text-gray-600 ">
+                                ${video.authors[0].profile_name} 
+                                ${video.authors[0].verified == true ? 
+                                    `
+                                        <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png">
+                                ` : ``}
+                                </p>
                                 <p>91K views</p>
                             </div> 
 
                 </div>
                                  
-                            <button class="btn btn-block">block</button>
+                            <button onclick = "VideoDetails('${video.video_id}')" class="btn btn-block">Details</button>
             </div>
     
     
@@ -108,3 +153,6 @@ const VideoCategorySection = (videos) => {
 }
 
 catagoryButton();
+
+
+{/* <img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png"></img> */}
